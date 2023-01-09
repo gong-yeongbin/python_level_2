@@ -39,6 +39,22 @@ class Car():
     def get_price_culc(self):
         return 'After Car Price -> company : {}, price : {}'.format(self._company, self._details.get('price') * Car.price_per_raise)
 
+    # Class Method
+    @classmethod
+    def raise_price(cls, per):
+        if per <= 1:
+            print('Please Enter 1 Or More')
+            return
+        cls.price_per_raise = per
+        print('Succeed! price increased. ')
+
+    # Static Method
+    @staticmethod
+    def is_bmw(inst):
+        if inst._company == 'Bmw':
+            return 'OK! This car is {}'.format(inst._company)
+        return 'Sorry. This car is no Bmw.'
+
 
 # Self 의미
 car1 = Car('Ferarri', {'color': 'White', 'horsepower': 400, 'price': 8000})
@@ -63,3 +79,17 @@ Car.price_per_raise = 1.4
 # 가격정보(인상 후)
 print(car1.get_price_culc())
 print(car2.get_price_culc())
+
+# 가격 인상(클래스 메소드 사용)
+Car.raise_price(1.6)
+
+# 가격정보(인상 후)
+print(car1.get_price_culc())
+print(car2.get_price_culc())
+
+# 인스턴스 호출(스테이틱)
+print(car1.is_bmw(car1))
+print(car2.is_bmw(car2))
+# 클래스로 호출(스테이틱)
+print(Car.is_bmw(car1))
+print(Car.is_bmw(car2))
